@@ -4,7 +4,7 @@
 
 #Requirements
 
-Requires io.js or node.js installation.
+Requires io.js or node.js installation and git.
 
 ```
 npm install -g apply-pr
