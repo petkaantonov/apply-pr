@@ -7,7 +7,7 @@
 Requires io.js or node.js installation.
 
 ```
-sudo npm install -g apply-pr
+npm install -g apply-pr
 ```
 
 #Why?
