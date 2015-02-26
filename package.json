@@ -1,0 +1,37 @@
+{
+  "name": "apply-pr",
+  "version": "1.0.0",
+  "description": "Command line tool for applying GitHub Pull Requests",
+  "bin": {
+    "apply-pr": "bin/apply-pr"
+  },
+  "preferGlobal": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/petkaantonov/apply-pr.git"
+  },
+  "keywords": [
+    "git"
+  ],
+  "author": "Petka Antonov <petka_antonov@hotmail.com> (https://github.com/petkaantonov)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/petkaantonov/apply-pr/issues"
+  },
+  "homepage": "https://github.com/petkaantonov/apply-pr",
+  "dependencies": {
+    "bluebird": "^2.9.12",
+    "core-error-predicates": "^1.0.2",
+    "cross-spawn": "^0.2.6",
+    "optimist": "^0.6.1",
+    "request": "^2.53.0",
+  },
+  "readmeFilename": "README.md",
+  "files": [
+    "bin",
+    "src"
+  ]
+}
