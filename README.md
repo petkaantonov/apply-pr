@@ -49,6 +49,8 @@ $ apply-pr 505 -- --whitespace=fix
 
 By default nothing is passed as an option to `git am`.
 
+**Note** If the PR doesn't apply cleanly and you don't want to fix it you can always discard it by typing `git am --abort`.
+
 #Safety
 
 apply-pr will instantly abort if the working directory is not clean or if you are in the middle of a merge/rebase/am/cherry-pick.
