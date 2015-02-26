@@ -48,8 +48,9 @@ var pullRequestId = (args._[0] >>> 0);
 var branch = validateRef.branch(args.branch);
 var remote = validateRef.remote(args.remote);
 var status = run("git status --porcelain");
-Promise.join(status, remote, branch, function(status, remote, branch) {
-    if (status.stdout) {
+var fullStatus = run("git status");
+Promise.join(status, fullStatus, remote, branch, function(status, fullStatus, remote, branch) {
+    if (/You are in the middle/i.test(fullStatus.stdout) || status.stdout) {
         throw new Error("Your have uncommited/unstaged work in the working directory " +
                         "or you are in the middle of a merge/rebase/cherry-pick/am. " +
                         "Run `git status` for more information.");
