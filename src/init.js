@@ -47,7 +47,7 @@ var validateRef = require("./validateRef");
 var pullRequestId = (args._[0] >>> 0);
 var branch = validateRef.branch(args.branch);
 var remote = validateRef.remote(args.remote);
-var status = run("git status --porcelain", {log: false});
+var status = run("git status --porcelain");
 Promise.join(status, remote, branch, function(status, remote, branch) {
     if (status.stdout) {
         throw new Error("Your have uncommited/unstaged work in the working directory " +
@@ -89,7 +89,7 @@ Promise.join(status, remote, branch, function(status, remote, branch) {
     .spread(function(response, body) {
         var code = +response.statusCode;
         if (200 <= code && code <= 299) {
-            return run(["git", "am"].concat(amArgs), {stdin: body});
+            return run(["git", "am"].concat(amArgs), {stdin: body, log: true});
         }
         throw new RequestError(pullRequestUrl, code);
     });

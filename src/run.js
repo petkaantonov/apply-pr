@@ -9,7 +9,7 @@ module.exports = function run(command, options) {
     options = Object(options);
     var stdin = options.stdin;
     var cwd = options.cwd;
-    var log = options.log === false ? false : true;
+    var log = !!options.log;
     if (typeof stdin !== "string") {
         stdin = null;
     }
@@ -44,7 +44,7 @@ module.exports = function run(command, options) {
         });
         c.on("close", function(code) {
             if (code == 0) resolve(makeResult())
-            else reject(makeResult(path.basename(cmd) + " exited with code: " + code + "\n" + err.trim()));
+            else reject(makeResult(cmd + " " + args.join(" ") + " exited with code: " + code + "\n" + err.trim()));
         })
     });
 }
