@@ -29,7 +29,7 @@ it is not needed for public repositories however.
 Options:
   -r, --remote   The remote from which the Pull Request is applied.     [default: "origin"]
   -b, --branch   The branch where the Pull Request will be applied to.  [default: the current branch]
-  -t, --timeout  Time limit for fetching the pull request patch.        [default: 5000]
+  -t, --timeout  Time limit for fetching the pull request patch.        [default: 30000]
 ```
 
 Example:
