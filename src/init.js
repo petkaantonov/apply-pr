@@ -1,4 +1,4 @@
-var TIMEOUT = 5000;
+var TIMEOUT = 30000;
 var amArgs = [];
 var args = require("optimist")
     .usage("Apply pull/merge requests.\nUsage: apply-pr [OPTIONS] pull-request-id [--] [git am OPTIONS]\n\n" +
