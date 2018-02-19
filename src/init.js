@@ -22,10 +22,10 @@ var args = require("optimist")
     .check(function(argv) {
         var posArgs = argv._;
         if (!posArgs || posArgs.length < 1) {
-            throw new Error("Pull Request id is required");
+            throw new Error("Pull Request id or Commit hash is required");
         }
         var prId = posArgs[0];
-        if ((prId >>> 0) !== prId) {
+        if (prId.length !== 40 && (prId >>> 0) !== prId) {
             throw new Error("Pull Request id must be a positive integer");
         }
         amArgs = posArgs.slice(1);
@@ -44,7 +44,7 @@ var util = require("util");
 var parseRepo = require("./parse-repo");
 var validateRef = require("./validateRef");
 
-var pullRequestId = (args._[0] >>> 0);
+var pullRequestId = args._[0];
 var branch = validateRef.branch(args.branch);
 var remote = validateRef.remote(args.remote);
 var status = run("git status --porcelain");
@@ -73,9 +73,10 @@ Promise.join(status, fullStatus, remote, branch, function(status, fullStatus, re
         throw new Error("no url configured for the remote '" + remote + "'");
     }
     var repo = parseRepo(remote, url);
-    var pullRequestUrl = util.format("https://github.com/%s/%s/pull/%s.patch",
+    var pullRequestUrl = util.format("https://github.com/%s/%s/%s/%s.patch",
                                      repo.owner,
                                      repo.project,
+                                     pullRequestId.length === 40 ? 'commit' : 'pull',
                                      pullRequestId);
     console.log("Applying Pull Request from:", pullRequestUrl);
     return request({
